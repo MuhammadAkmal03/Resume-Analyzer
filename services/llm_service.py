@@ -1,10 +1,10 @@
 """
 Groq LLM Service
-Handles all interactions with the Groq API
+Handles all interactions with the Groq API using requests library
 """
 
 import os
-from groq import Groq
+import requests
 from dotenv import load_dotenv
 
 # Load environment variables
@@ -19,8 +19,12 @@ class GroqLLM:
         if not self.api_key:
             raise ValueError("GROQ_API_KEY not found. Please set it in .env file.")
         
-        self.client = Groq(api_key=self.api_key)
-        self.model = "llama-3.1-70b-versatile"  # Fast and capable model
+        self.base_url = "https://api.groq.com/openai/v1/chat/completions"
+        self.model = "llama-3.3-70b-versatile"  # Fast and capable model
+        self.headers = {
+            "Authorization": f"Bearer {self.api_key}",
+            "Content-Type": "application/json"
+        }
     
     def generate_response(self, prompt: str, system_prompt: str = None) -> str:
         """
@@ -46,16 +50,27 @@ class GroqLLM:
             "content": prompt
         })
         
+        payload = {
+            "model": self.model,
+            "messages": messages,
+            "temperature": 0.7,
+            "max_tokens": 2048
+        }
+        
         try:
-            chat_completion = self.client.chat.completions.create(
-                messages=messages,
-                model=self.model,
-                temperature=0.7,
-                max_tokens=2048
+            response = requests.post(
+                self.base_url,
+                headers=self.headers,
+                json=payload,
+                timeout=60
             )
-            return chat_completion.choices[0].message.content
-        except Exception as e:
+            response.raise_for_status()
+            data = response.json()
+            return data["choices"][0]["message"]["content"]
+        except requests.exceptions.RequestException as e:
             raise Exception(f"Error calling Groq API: {str(e)}")
+        except (KeyError, IndexError) as e:
+            raise Exception(f"Error parsing Groq response: {str(e)}")
 
 
 # Singleton instance for reuse
