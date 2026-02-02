@@ -1,25 +1,36 @@
 # 📊 Resume Analyzer
 
-An AI-powered Resume/CV Analyzer that helps job seekers improve their resumes using **Groq LLM** (Llama 3.1 70B) and **Streamlit**.
+An AI-powered Resume/CV Analyzer that helps job seekers improve their resumes using **Groq LLM** (Llama 3.3 70B) and **Streamlit**.
 
 ![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)
 ![Streamlit](https://img.shields.io/badge/Streamlit-1.31+-red.svg)
 ![Groq](https://img.shields.io/badge/Groq-LLM-green.svg)
 ![License](https://img.shields.io/badge/License-MIT-yellow.svg)
 
+## 🌐 Live Demo
+
+🔗 **[Try the App](https://resume-analyzer-dkdrxkez8ksu2xrqcahglo.streamlit.app/)**
+
 ## ✨ Features
 
-- **📄 Resume Upload** - Support for PDF and DOCX formats
-- **📊 Resume Analysis** - Comprehensive feedback on strengths and weaknesses
-- **🤖 ATS Score** - Check compatibility with Applicant Tracking Systems
-- **🎯 Job Match** - Compare resume against specific job descriptions
-- **💡 Improvement Suggestions** - Actionable recommendations to enhance your resume
+| Feature | Description |
+|---------|-------------|
+| 📄 **Resume Upload** | Support for PDF and DOCX formats |
+| 📊 **Resume Analysis** | Comprehensive feedback on strengths and weaknesses |
+| 🤖 **ATS Score** | Check compatibility with Applicant Tracking Systems |
+| 🎯 **Job Match** | Compare resume against specific job descriptions |
+| 💡 **Improvement Tips** | Actionable recommendations to enhance your resume |
 
-## 🖥️ Demo
 
+### Main Interface
 Upload your resume and get instant AI-powered feedback!
 
-## 🚀 Quick Start
+### Analysis Results
+- **Resume Analysis** - Detailed quality assessment
+- **ATS Score** - Applicant Tracking System compatibility check
+- **Job Match** - Compare resume against job descriptions
+
+##  Quick Start (Local Setup)
 
 ### Prerequisites
 
@@ -80,8 +91,6 @@ resume-analyzer/
 ├── prompts/
 │   ├── __init__.py
 │   └── analysis_prompts.py   # LLM prompts
-├── utils/
-│   └── __init__.py
 ├── requirements.txt          # Python dependencies
 ├── .env.example              # Environment variables template
 ├── .gitignore
@@ -94,7 +103,7 @@ resume-analyzer/
 
 | Variable | Description | Required |
 |----------|-------------|----------|
-| `GROQ_API_KEY` | Your Groq API key from [console.groq.com](https://console.groq.com/) | ✅ Yes |
+| `GROQ_API_KEY` | Your Groq API key from [console.groq.com](https://console.groq.com/) |  Yes |
 
 ### Getting a Groq API Key
 
@@ -103,6 +112,16 @@ resume-analyzer/
 3. Navigate to API Keys section
 4. Create a new API key
 5. Copy and paste it into your `.env` file
+
+## 🛠️ Technologies Used
+
+| Technology | Purpose |
+|------------|---------|
+| **Streamlit** | Web application framework |
+| **Groq API** | LLM inference (Llama 3.3 70B) |
+| **PyPDF2** | PDF text extraction |
+| **python-docx** | DOCX text extraction |
+| **python-dotenv** | Environment variable management |
 
 ## 📖 How to Use
 
@@ -114,27 +133,15 @@ resume-analyzer/
    - 🤖 **ATS Score** - Applicant Tracking System compatibility
    - 🎯 **Job Match** - How well you match the job requirements
 
-## 🛠️ Technologies Used
-
-| Technology | Purpose |
-|------------|---------|
-| **Streamlit** | Web application framework |
-| **Groq** | LLM API (Llama 3.1 70B) |
-| **PyPDF2** | PDF text extraction |
-| **python-docx** | DOCX text extraction |
-| **python-dotenv** | Environment variable management |
-
 ## 🚢 Deployment
 
-### Deploy to Streamlit Community Cloud
+This app is deployed on **Streamlit Community Cloud**.
 
-1. Push your code to GitHub
+To deploy your own:
+1. Fork this repository
 2. Go to [share.streamlit.io](https://share.streamlit.io/)
 3. Connect your GitHub repository
-4. Add `GROQ_API_KEY` in the Secrets section:
-   ```toml
-   GROQ_API_KEY = "your_groq_api_key_here"
-   ```
+4. Add `GROQ_API_KEY` in the Secrets section
 5. Deploy!
 
 ## 🤝 Contributing
@@ -153,4 +160,4 @@ This project is licensed under the MIT License.
 
 ---
 
-⭐ Star this repo if you found it helpful!
+⭐ **Star this repo if you found it helpful!**
